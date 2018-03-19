@@ -15,7 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @RestController
 public class SwaggerConfig {
 
-    public Docket helloApi() {
+    public Docket appApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select().apis(RequestHandlerSelectors.basePackage("com.eventgate.backend.service.controller"))
                 .paths(PathSelectors.regex("/*"))

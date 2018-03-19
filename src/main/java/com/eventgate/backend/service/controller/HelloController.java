@@ -7,9 +7,11 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController(value = "/hello")
+@RestController()
+@RequestMapping(value = "/hello")
 @Api(value = "hello world lala", description = "This just a hello world controller")
 public class HelloController {
 
