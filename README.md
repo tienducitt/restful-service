@@ -7,9 +7,10 @@
 |-----|------|
 |Spring boot| Done |
 |Swagger| Done|
+|Error handling| Done with a little hack with swagger resource controller, need to improve |
 |JPA| - |
 |PostgresQL| - |
-|Config| - |
+|Config| Done |
 |Unit test, Covering test| - |
 |Migration & seeder| - |
 |Docker| - |
