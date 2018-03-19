@@ -1,0 +1,12 @@
+# MY RESTful service starter project using Spring boot
+
+Target:
+Spring boot
+Swagger
+JPA
+PostgresQL
+Config
+Unit test, Covering test
+Migration & seeder
+Docker
+Docker-compose
