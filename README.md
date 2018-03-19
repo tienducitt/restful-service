@@ -3,7 +3,8 @@
 
 
 ## Target:
-
+|Stack|Status|
+|-----|------|
 |Spring boot| Done |
 |Swagger| Done|
 |JPA| - |
