@@ -1,4 +1,4 @@
-package com.eventgate.backend.service.controller;
+package com.eventgate.backend.service.controller.domain;
 
 import com.eventgate.backend.service.dto.ActionResponse;
 import com.eventgate.backend.service.dto.UserDTO;

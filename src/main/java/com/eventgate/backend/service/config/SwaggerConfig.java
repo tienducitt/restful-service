@@ -1,5 +1,6 @@
 package com.eventgate.backend.service.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.builders.PathSelectors;
@@ -15,22 +16,23 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @RestController
 public class SwaggerConfig {
 
+    @Bean
     public Docket appApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .select().apis(RequestHandlerSelectors.basePackage("com.eventgate.backend.service.controller"))
-                .paths(PathSelectors.regex("/*"))
-                .build();
+                .select().apis(RequestHandlerSelectors.basePackage("com.eventgate.backend.service.controller.domain"))
+                .paths(PathSelectors.regex("/v1.*"))
+                .build()
+                .apiInfo(metaData());
     }
 
     private ApiInfo metaData() {
-        ApiInfo apiInfo = new ApiInfo(
+        return new ApiInfo(
                 "Spring Boot REST API",
-                "Spring Boot REST API for Online Store",
+                "Spring Boot REST API ",
                 "1.0",
                 "Terms of service",
-                new Contact("John Thompson", "https://springframework.guru/about/", "john@springfrmework.guru"),
+                new Contact("Duc Nguyen", "https://github.com/tienducitt", "tienducitt@gmail.com"),
                 "Apache License Version 2.0",
                 "https://www.apache.org/licenses/LICENSE-2.0");
-        return apiInfo;
     }
 }
