@@ -1,4 +1,4 @@
-package com.eventgate.backend.service.config;
+package com.eventgate.backend.service.app;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
