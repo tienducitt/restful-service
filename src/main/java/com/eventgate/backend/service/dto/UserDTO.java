@@ -3,11 +3,9 @@ package com.eventgate.backend.service.dto;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import javax.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
 
 @Data
-@Entity
 public class UserDTO {
     @ApiModelProperty(notes = "id")
     private int id;
