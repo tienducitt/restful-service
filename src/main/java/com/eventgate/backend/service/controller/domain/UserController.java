@@ -28,7 +28,7 @@ public class UserController {
     @Autowired
     UserRepository userRepo;
 
-    @ApiOperation("Get list users")
+    @ApiOperation(value = "Get list users")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Success")
     })

@@ -41,13 +41,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
             MissingServletRequestParameterException ex, HttpHeaders headers,
             HttpStatus status, WebRequest request) {
         String error = ex.getParameterName() + " parameter is missing";
-        return buildResponseEntity(RespFactory.fail(HttpStatus.BAD_REQUEST, error, ex.getLocalizedMessage()));
+        return buildResponseEntity(ResponseFactory.fail(HttpStatus.BAD_REQUEST, error, ex.getLocalizedMessage()));
     }
 
     @Override
     protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         String error = ex.getRequestURL() + " not supported";
-        return buildResponseEntity(RespFactory.fail(HttpStatus.BAD_REQUEST, error, ex.getLocalizedMessage()), NOT_FOUND);
+        return buildResponseEntity(ResponseFactory.fail(HttpStatus.BAD_REQUEST, error, ex.getLocalizedMessage()), NOT_FOUND);
     }
 
     /**
@@ -69,7 +69,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         builder.append(ex.getContentType());
         builder.append(" media type is not supported. Supported media types are ");
         ex.getSupportedMediaTypes().forEach(t -> builder.append(t).append(", "));
-        return buildResponseEntity(RespFactory.fail(HttpStatus.UNSUPPORTED_MEDIA_TYPE, builder.substring(0, builder.length() - 2), ex.getLocalizedMessage()));
+        return buildResponseEntity(ResponseFactory.fail(HttpStatus.UNSUPPORTED_MEDIA_TYPE, builder.substring(0, builder.length() - 2), ex.getLocalizedMessage()));
     }
 
     /**
@@ -118,7 +118,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(EntityNotFoundException.class)
     protected ResponseEntity<Object> handleEntityNotFound(
             EntityNotFoundException ex) {
-        return buildResponseEntity(RespFactory.fail(NOT_FOUND, ex.getMessage()));
+        return buildResponseEntity(ResponseFactory.fail(NOT_FOUND, ex.getMessage()));
     }
 
     /**
@@ -134,7 +134,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         ServletWebRequest servletWebRequest = (ServletWebRequest) request;
         String error = "Malformed JSON request";
-        return buildResponseEntity(RespFactory.fail(HttpStatus.BAD_REQUEST, error, ex.getLocalizedMessage()));
+        return buildResponseEntity(ResponseFactory.fail(HttpStatus.BAD_REQUEST, error, ex.getLocalizedMessage()));
     }
 
     /**
@@ -149,7 +149,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotWritable(HttpMessageNotWritableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         String error = "Error writing JSON output";
-        return buildResponseEntity(RespFactory.fail(HttpStatus.INTERNAL_SERVER_ERROR, error, ex.getLocalizedMessage()));
+        return buildResponseEntity(ResponseFactory.fail(HttpStatus.INTERNAL_SERVER_ERROR, error, ex.getLocalizedMessage()));
     }
 
     /**
@@ -157,7 +157,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(javax.persistence.EntityNotFoundException.class)
     protected ResponseEntity<Object> handleEntityNotFound(javax.persistence.EntityNotFoundException ex) {
-        return buildResponseEntity(RespFactory.fail(HttpStatus.NOT_FOUND, ex.getLocalizedMessage()));
+        return buildResponseEntity(ResponseFactory.fail(HttpStatus.NOT_FOUND, ex.getLocalizedMessage()));
     }
 
     /**
@@ -170,9 +170,9 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleDataIntegrityViolation(DataIntegrityViolationException ex,
                                                                   WebRequest request) {
         if (ex.getCause() instanceof ConstraintViolationException) {
-            return buildResponseEntity(RespFactory.fail(HttpStatus.CONFLICT, "Database error", ex.getCause().getLocalizedMessage()));
+            return buildResponseEntity(ResponseFactory.fail(HttpStatus.CONFLICT, "Database error", ex.getCause().getLocalizedMessage()));
         }
-        return buildResponseEntity(RespFactory.fail(HttpStatus.INTERNAL_SERVER_ERROR, ex.getLocalizedMessage()));
+        return buildResponseEntity(ResponseFactory.fail(HttpStatus.INTERNAL_SERVER_ERROR, ex.getLocalizedMessage()));
     }
 
     /**
@@ -185,7 +185,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleMethodArgumentTypeMismatch(MethodArgumentTypeMismatchException ex,
                                                                       WebRequest request) {
 
-        return buildResponseEntity(RespFactory.fail(
+        return buildResponseEntity(ResponseFactory.fail(
                 BAD_REQUEST,
                 String.format("The parameter '%s' of value '%s' could not be converted to type '%s'",
                         ex.getName(), ex.getValue(), ex.getRequiredType().getSimpleName()),

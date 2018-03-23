@@ -2,7 +2,7 @@ package com.eventgate.backend.service.controller;
 
 import org.springframework.http.HttpStatus;
 
-public class RespFactory {
+public class ResponseFactory {
 
     public static Response exception(HttpStatus status, Throwable ex) {
         return fail(status, "Something wrong in ourside. Please try again later.", ex.getLocalizedMessage());
