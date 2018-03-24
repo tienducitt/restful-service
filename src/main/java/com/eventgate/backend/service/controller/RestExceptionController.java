@@ -25,7 +25,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
-public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+public class RestExceptionController extends ResponseEntityExceptionHandler {
 
     /**
      * Handle MissingServletRequestParameterException. Triggered when a 'required' request parameter is missing.
@@ -173,6 +173,16 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
             return buildResponseEntity(ResponseFactory.fail(HttpStatus.CONFLICT, "Database error", ex.getCause().getLocalizedMessage()));
         }
         return buildResponseEntity(ResponseFactory.fail(HttpStatus.INTERNAL_SERVER_ERROR, ex.getLocalizedMessage()));
+    }
+
+    @ExceptionHandler(Exception.class)
+    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, WebRequest request) {
+        return buildResponseEntity(ResponseFactory.fail(HttpStatus.INTERNAL_SERVER_ERROR, ex.getLocalizedMessage()));
+    }
+
+    @ExceptionHandler(HttpException.class)
+    protected ResponseEntity<Object> handleMissingPathVariable(HttpException ex) {
+        return buildResponseEntity(ResponseFactory.fail(ex.getStatus(), ex.getLocalizedMessage()));
     }
 
     /**

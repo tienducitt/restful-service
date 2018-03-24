@@ -1,4 +1,4 @@
-package com.eventgate.backend.service.app;
+package com.eventgate.backend.service.advice;
 
 import com.eventgate.backend.service.intercepter.ResponseIntercepter;
 import org.springframework.context.annotation.Configuration;

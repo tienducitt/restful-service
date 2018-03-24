@@ -11,3 +11,6 @@ https://springfox.github.io/springfox/docs/current/
 
 ## Spring JPA + MySQL
 https://www.callicoder.com/spring-boot-rest-api-tutorial-with-mysql-jpa-hibernate/
+
+## Simple authen with JWT:
+http://andreinc.net/2016/09/10/simple-authentication-with-spring-boot-and-jwt-tokens/

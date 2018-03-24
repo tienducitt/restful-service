@@ -1,4 +1,4 @@
-package com.eventgate.backend.service.app;
+package com.eventgate.backend.service.advice;
 
 import com.eventgate.backend.service.controller.Response;
 import com.fasterxml.classmate.TypeResolver;
@@ -33,8 +33,8 @@ public class SwaggerConfig {
                         // with Response<T> of T
                         typeResolver.resolve(Response.class, WildcardType.class)
                 ))
-                .select().apis(RequestHandlerSelectors.basePackage("com.eventgate.backend.service.controller.domain"))
-                .paths(PathSelectors.regex("/v1.*"))
+                .select().apis(RequestHandlerSelectors.basePackage("com.eventgate.backend.service.controller"))
+                .paths(PathSelectors.regex("/api.*"))
                 .build()
                 .apiInfo(metaData());
     }

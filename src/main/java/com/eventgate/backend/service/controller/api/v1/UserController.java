@@ -1,4 +1,4 @@
-package com.eventgate.backend.service.controller.domain;
+package com.eventgate.backend.service.controller.api.v1;
 
 import com.eventgate.backend.service.controller.EntityNotFoundException;
 import com.eventgate.backend.service.model.User;
@@ -21,7 +21,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/v1/users")
+@RequestMapping(value = "/api/v1/users")
 @Api(description = "User controller")
 public class UserController {
 

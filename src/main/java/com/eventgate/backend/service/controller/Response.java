@@ -57,7 +57,7 @@ public class Response<T> {
                 fieldError.getDefaultMessage());
     }
 
-    void addValidationErrors(List<FieldError> fieldErrors) {
+    public void addValidationErrors(List<FieldError> fieldErrors) {
         fieldErrors.forEach(this::addValidationError);
     }
 
@@ -67,7 +67,7 @@ public class Response<T> {
                 objectError.getDefaultMessage());
     }
 
-    void addValidationError(List<ObjectError> globalErrors) {
+    public void addValidationError(List<ObjectError> globalErrors) {
         globalErrors.forEach(this::addValidationError);
     }
 

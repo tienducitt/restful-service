@@ -33,6 +33,8 @@ public class User {
     @NotBlank
     private String password;
 
+    private String role;
+
     @JsonIgnore
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)

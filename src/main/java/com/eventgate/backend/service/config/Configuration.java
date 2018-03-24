@@ -9,7 +9,7 @@ import java.util.List;
 
 @Component
 @PropertySource("classpath:Configuration.properties")   // specific the config file location
-@ConfigurationProperties("app") // prefix of the config
+@ConfigurationProperties("advice") // prefix of the config
 public class Configuration {
 
     private String error;
