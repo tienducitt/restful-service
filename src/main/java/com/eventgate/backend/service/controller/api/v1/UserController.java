@@ -1,6 +1,6 @@
 package com.eventgate.backend.service.controller.api.v1;
 
-import com.eventgate.backend.service.controller.EntityNotFoundException;
+import com.eventgate.backend.service.exception.EntityNotFoundException;
 import com.eventgate.backend.service.model.User;
 import com.eventgate.backend.service.repository.UserRepository;
 import io.swagger.annotations.Api;

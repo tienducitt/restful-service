@@ -1,7 +1,7 @@
 package com.eventgate.backend.service.intercepter;
 
 import com.eventgate.backend.service.config.Configuration;
-import com.eventgate.backend.service.controller.HttpException;
+import com.eventgate.backend.service.exception.HttpException;
 import com.eventgate.backend.service.dto.JwtUser;
 import com.eventgate.backend.service.service.JwtService;
 import io.jsonwebtoken.JwtException;

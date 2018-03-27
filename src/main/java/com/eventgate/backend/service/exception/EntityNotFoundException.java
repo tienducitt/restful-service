@@ -1,4 +1,4 @@
-package com.eventgate.backend.service.controller;
+package com.eventgate.backend.service.exception;
 
 import org.apache.commons.lang3.StringUtils;
 

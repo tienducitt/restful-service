@@ -1,5 +1,7 @@
-package com.eventgate.backend.service.controller;
+package com.eventgate.backend.service.advice;
 
+import com.eventgate.backend.service.dto.Response;
+import com.eventgate.backend.service.dto.ResponseFactory;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;

@@ -1,4 +1,4 @@
-package com.eventgate.backend.service.dto;
+package com.eventgate.backend.service.controller.api.dto;
 
 import lombok.Data;
 import lombok.Getter;

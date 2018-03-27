@@ -1,5 +1,6 @@
-package com.eventgate.backend.service.controller;
+package com.eventgate.backend.service.advice;
 
+import com.eventgate.backend.service.dto.Response;
 import com.fasterxml.classmate.TypeResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

@@ -1,7 +1,7 @@
 package com.eventgate.backend.service.controller.api;
 
-import com.eventgate.backend.service.controller.HttpException;
-import com.eventgate.backend.service.dto.AuthDTO;
+import com.eventgate.backend.service.exception.HttpException;
+import com.eventgate.backend.service.controller.api.dto.AuthDTO;
 import com.eventgate.backend.service.dto.JwtUser;
 import com.eventgate.backend.service.service.JwtService;
 import com.eventgate.backend.service.service.UserService;

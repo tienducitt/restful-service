@@ -1,4 +1,4 @@
-package com.eventgate.backend.service.controller;
+package com.eventgate.backend.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -14,6 +14,7 @@ import org.springframework.validation.ObjectError;
 
 import javax.validation.ConstraintViolation;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -56,7 +57,7 @@ public class Response<T> {
                 fieldError.getDefaultMessage());
     }
 
-    public void addValidationErrors(List<FieldError> fieldErrors) {
+    public void addValidationErrors(Collection<FieldError> fieldErrors) {
         fieldErrors.forEach(this::addValidationError);
     }
 

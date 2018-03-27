@@ -1,4 +1,4 @@
-package com.eventgate.backend.service.controller;
+package com.eventgate.backend.service.dto;
 
 import org.springframework.http.HttpStatus;
 

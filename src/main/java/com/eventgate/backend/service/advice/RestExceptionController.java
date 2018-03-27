@@ -1,5 +1,9 @@
-package com.eventgate.backend.service.controller;
+package com.eventgate.backend.service.advice;
 
+import com.eventgate.backend.service.dto.Response;
+import com.eventgate.backend.service.dto.ResponseFactory;
+import com.eventgate.backend.service.exception.EntityNotFoundException;
+import com.eventgate.backend.service.exception.HttpException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

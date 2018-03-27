@@ -1,4 +1,4 @@
-package com.eventgate.backend.service.controller;
+package com.eventgate.backend.service.exception;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;

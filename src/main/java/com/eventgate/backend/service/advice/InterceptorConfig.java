@@ -1,5 +1,6 @@
-package com.eventgate.backend.service.intercepter;
+package com.eventgate.backend.service.advice;
 
+import com.eventgate.backend.service.intercepter.JwtAuthInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

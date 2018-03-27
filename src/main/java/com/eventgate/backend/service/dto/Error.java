@@ -1,4 +1,4 @@
-package com.eventgate.backend.service.controller;
+package com.eventgate.backend.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
