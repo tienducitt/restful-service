@@ -20,7 +20,6 @@ import java.util.Set;
 @Data
 @AllArgsConstructor @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.CUSTOM, property = "data", visible = true)
 @JsonTypeIdResolver(LowerCaseClassNameResolver.class)
 public class Response<T> {
 

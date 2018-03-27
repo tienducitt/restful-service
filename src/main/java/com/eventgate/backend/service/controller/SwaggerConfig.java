@@ -1,6 +1,5 @@
-package com.eventgate.backend.service.advice;
+package com.eventgate.backend.service.controller;
 
-import com.eventgate.backend.service.controller.Response;
 import com.fasterxml.classmate.TypeResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +21,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
     @Autowired
-    TypeResolver typeResolver;
+    private TypeResolver typeResolver;
 
     @Bean
     public Docket appApi() {

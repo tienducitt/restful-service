@@ -1,7 +1,8 @@
 package com.eventgate.backend.service.intercepter;
 
+import com.eventgate.backend.service.config.Configuration;
 import com.eventgate.backend.service.controller.HttpException;
-import com.eventgate.backend.service.model.JwtUser;
+import com.eventgate.backend.service.dto.JwtUser;
 import com.eventgate.backend.service.service.JwtService;
 import io.jsonwebtoken.JwtException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,33 +19,37 @@ import javax.servlet.http.HttpServletResponse;
 public class JwtAuthInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
-    JwtService jwtService;
+    private JwtService jwtService;
 
     @Value("${jwt.auth.header}")
-    String authHeader;
+    private String authHeader;
+
+    @Autowired
+    private Configuration configuration;
 
     @Override
     public boolean preHandle(HttpServletRequest req,
-                             HttpServletResponse resp, Object arg2) throws Exception {
-            String authHeaderVal = req.getHeader(authHeader);
+                             HttpServletResponse resp, Object arg2) throws HttpException {
 
-            if (authHeaderVal == null) {
-                throw new HttpException(HttpStatus.UNAUTHORIZED);
-            }
+        if (!configuration.isJwtAuthenEnable()) {
+            return true;
+        }
 
-            try {
-                JwtUser jwtUser = jwtService.getUser(authHeaderVal);
-                req.setAttribute("jwtUser", jwtUser);
-            } catch (JwtException ex) {
-                throw new HttpException(HttpStatus.NOT_ACCEPTABLE);
-            }
+        String authHeaderVal = req.getHeader(authHeader);
+        if (authHeaderVal == null) {
+            throw new HttpException(HttpStatus.UNAUTHORIZED);
+        }
 
+        try {
+            JwtUser jwtUser = jwtService.getUser(authHeaderVal);
+            req.setAttribute("jwtUser", jwtUser);
+        } catch (JwtException ex) {
+            throw new HttpException(HttpStatus.NOT_ACCEPTABLE);
+        }
 
         return true;
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
-    }
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {}
 }

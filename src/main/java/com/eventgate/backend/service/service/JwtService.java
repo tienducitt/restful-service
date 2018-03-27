@@ -1,6 +1,6 @@
 package com.eventgate.backend.service.service;
 
-import com.eventgate.backend.service.model.JwtUser;
+import com.eventgate.backend.service.dto.JwtUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

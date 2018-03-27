@@ -3,10 +3,12 @@ package com.eventgate.backend.service.controller;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Data @Getter @Setter
 @EqualsAndHashCode
 @RequiredArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)

@@ -45,7 +45,7 @@ public class UserController {
     })
     @GetMapping(value = "{userId}")
     public User get(@PathVariable int userId) {
-        return userRepo.findById(userId).orElseThrow(() -> new EntityNotFoundException(User.class, "id", userId + ""));
+        return userRepo.findById(userId).orElseThrow(() -> new EntityNotFoundException(User.class, "id", userId));
     }
 
     @ApiOperation(value = "Create new user")

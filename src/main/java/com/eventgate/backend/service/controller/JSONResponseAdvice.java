@@ -1,7 +1,5 @@
-package com.eventgate.backend.service.advice;
+package com.eventgate.backend.service.controller;
 
-import com.eventgate.backend.service.controller.Response;
-import com.eventgate.backend.service.controller.ResponseFactory;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -19,7 +17,7 @@ public class JSONResponseAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-        if (!serverHttpRequest.getURI().getPath().startsWith("/v1/")
+        if (!serverHttpRequest.getURI().getPath().startsWith("/api/v1/")
                 || body instanceof Response) {
             return body;
         }
