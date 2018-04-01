@@ -57,10 +57,10 @@ public class JwtService {
                 .setSigningKey(encodedSecret)
                 .parseClaimsJws(token)
                 .getBody();
-        String userName = claims.getSubject();
+        String email = claims.getSubject();
         String role = (String) claims.get("role");
         JwtUser securityUser = new JwtUser();
-        securityUser.setUserName(userName);
+        securityUser.setEmail(email);
         securityUser.setRole(role);
         return securityUser;
     }
@@ -70,7 +70,7 @@ public class JwtService {
         Date now = new Date();
         return Jwts.builder()
                 .setId(UUID.randomUUID().toString())
-                .setSubject(jwtUser.getUserName())
+                .setSubject(jwtUser.getEmail())
                 .claim("role", jwtUser.getRole())
                 .setIssuedAt(now)
                 .setExpiration(getExpirationTime())

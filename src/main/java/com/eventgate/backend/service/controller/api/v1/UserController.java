@@ -68,7 +68,8 @@ public class UserController {
     @PutMapping(value = "{userId}")
     public User update(@PathVariable int userId, @Valid @RequestBody User input) {
         User user = userRepo.findById(userId).orElseThrow(() -> new EntityNotFoundException(User.class, "id", userId));
-        user.setUsername(input.getUsername());
+        user.setDisplayName(input.getDisplayName());
+        user.setAvatar(input.getAvatar());
         user.setPassword(input.getPassword());
 
         return  userRepo.save(user);    //TODO: what happen if it fail?

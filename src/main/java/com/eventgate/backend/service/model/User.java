@@ -18,6 +18,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +33,8 @@ public class User {
     private int id;
 
     @NotBlank
-    private String username;
+    @Email
+    private String email;
     @NotBlank
     private String password;
 

@@ -11,10 +11,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     /**
      * Find users by username
-     * @param username
-     * @return the user with input username
+     * @param email
+     * @return the user with input email
      *          If no user is found, return null.
      */
-    @Query("SELECT u FROM User u WHERE u.username = :username")
-    User findByUserName(@Param("username") String username);
+    @Query("SELECT u FROM User u WHERE u.email = :email")
+    User findByEmail(@Param("email") String email);
 }
