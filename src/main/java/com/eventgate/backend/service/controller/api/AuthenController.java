@@ -43,14 +43,14 @@ public class AuthenController {
             return jwtService.getToken(new JwtUser(auth.getEmail(), "ADMIN"));
         }
 
-        throw new HttpException(HttpStatus.UNAUTHORIZED);
+        throw new HttpException(HttpStatus.UNAUTHORIZED, "Email or password is not valid");
     }
 
     @GetMapping("/me")
     public UserDTO getMe(@RequestAttribute JwtUser jwtUser) {
         User user = userRepository.findByEmail(jwtUser.getEmail());
         if (user == null) {
-            throw new HttpException(HttpStatus.UNAUTHORIZED);
+            throw new HttpException(HttpStatus.UNAUTHORIZED, "Account is unactive or already removed");
         }
 
         return new UserDTO(user);

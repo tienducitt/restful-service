@@ -37,14 +37,14 @@ public class JwtAuthInterceptor extends HandlerInterceptorAdapter {
 
         String authHeaderVal = req.getHeader(authHeader);
         if (authHeaderVal == null) {
-            throw new HttpException(HttpStatus.UNAUTHORIZED);
+            throw new HttpException(HttpStatus.UNAUTHORIZED, "UnAuthorized");
         }
 
         try {
             JwtUser jwtUser = jwtService.getUser(authHeaderVal);
             req.setAttribute("jwtUser", jwtUser);
         } catch (JwtException ex) {
-            throw new HttpException(HttpStatus.NOT_ACCEPTABLE);
+            throw new HttpException(HttpStatus.NOT_ACCEPTABLE, ex.getMessage());
         }
 
         return true;
