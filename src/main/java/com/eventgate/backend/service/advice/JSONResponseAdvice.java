@@ -19,7 +19,8 @@ public class JSONResponseAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-        if (!serverHttpRequest.getURI().getPath().startsWith("/api/v1/")
+
+        if (serverHttpRequest.getURI().getPath().startsWith("/resources")
                 || body instanceof Response) {
             return body;
         }

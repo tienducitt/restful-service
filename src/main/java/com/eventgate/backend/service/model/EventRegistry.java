@@ -12,23 +12,24 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.Date;
-import java.util.List;
 
 @Data
-@Entity
-@Table(name = "teams")
+@Entity(name = "event_registries")
 @EntityListeners(AuditingEntityListener.class)
-public class Team {
+public class EventRegistry {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
-    private boolean isDefault;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Event event;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -40,9 +41,11 @@ public class Team {
     @LastModifiedDate
     private Date updatedAt;
 
-    @OneToMany(mappedBy = "pk.team", fetch = FetchType.LAZY)
-    private List<TeamMember> members;
+    private boolean checkedIn;
 
-    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
-    private List<Event> events;
+    @ManyToOne()
+    private User checkedInBy;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date checkInAt;
 }

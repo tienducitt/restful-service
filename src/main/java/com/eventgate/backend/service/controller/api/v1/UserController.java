@@ -1,13 +1,17 @@
 package com.eventgate.backend.service.controller.api.v1;
 
 import com.eventgate.backend.service.exception.EntityNotFoundException;
+import com.eventgate.backend.service.exception.HttpException;
 import com.eventgate.backend.service.model.User;
+import com.eventgate.backend.service.repository.TeamRepository;
 import com.eventgate.backend.service.repository.UserRepository;
+import com.eventgate.backend.service.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +30,13 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserRepository userRepo;
+    UserRepository userRepository;
+
+    @Autowired
+    TeamRepository teamRepository;
+
+    @Autowired
+    UserService userService;
 
     @ApiOperation(value = "Get list users")
     @ApiResponses({
@@ -34,7 +44,7 @@ public class UserController {
     })
     @GetMapping()
     public List<User> getAll() {
-        return userRepo.findAll();
+        return userRepository.findAll();
     }
 
 
@@ -45,7 +55,7 @@ public class UserController {
     })
     @GetMapping(value = "{userId}")
     public User get(@PathVariable int userId) {
-        return userRepo.findById(userId).orElseThrow(() -> new EntityNotFoundException(User.class, "id", userId));
+        return userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException(User.class, "id", userId));
     }
 
     @ApiOperation(value = "Create new user")
@@ -54,8 +64,13 @@ public class UserController {
             @ApiResponse(code = 404, message = "User does not exist"),
     })
     @PostMapping
-    public User create(@Valid @RequestBody User user) {
-        return userRepo.save(user);
+    public User create(@Valid @RequestBody User dto) {
+        User user = userRepository.findByEmail(dto.getEmail());
+        if (user != null) {
+            throw new HttpException(HttpStatus.BAD_REQUEST, "Email is already used");
+        }
+
+        return userService.save(dto);
     }
 
 
@@ -67,12 +82,12 @@ public class UserController {
     })
     @PutMapping(value = "{userId}")
     public User update(@PathVariable int userId, @Valid @RequestBody User input) {
-        User user = userRepo.findById(userId).orElseThrow(() -> new EntityNotFoundException(User.class, "id", userId));
+        User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException(User.class, "id", userId));
         user.setDisplayName(input.getDisplayName());
         user.setAvatar(input.getAvatar());
         user.setPassword(input.getPassword());
 
-        return  userRepo.save(user);    //TODO: what happen if it fail?
+        return  userRepository.save(user);    //TODO: what happen if it fail?
     }
 
 
@@ -83,8 +98,8 @@ public class UserController {
             @ApiResponse(code = 404, message = "User does not exist"),})
     @DeleteMapping(value = "{userId}")
     public User delete(@PathVariable int userId) {
-        User user = userRepo.findById(userId).orElseThrow(() -> new EntityNotFoundException(User.class, "id", userId));
-        userRepo.delete(user);    //TODO: what happen if it fail?
+        User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException(User.class, "id", userId));
+        userRepository.delete(user);    //TODO: what happen if it fail?
 
         return user;
     }

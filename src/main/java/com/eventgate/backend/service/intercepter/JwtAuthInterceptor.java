@@ -35,6 +35,12 @@ public class JwtAuthInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
 
+        //TODO: config addPatterns in not stable, I have to do it manually instead!
+        String path = req.getRequestURI();
+        if (!(path.startsWith("/api/v1/") || path.startsWith("/api/member/") || path.startsWith("/api/me"))) {
+            return true;
+        }
+
         String authHeaderVal = req.getHeader(authHeader);
         if (authHeaderVal == null) {
             throw new HttpException(HttpStatus.UNAUTHORIZED, "UnAuthorized");

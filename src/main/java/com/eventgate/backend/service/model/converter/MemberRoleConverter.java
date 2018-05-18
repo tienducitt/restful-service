@@ -13,8 +13,8 @@ public class MemberRoleConverter implements AttributeConverter<MemberRole, Strin
         switch (attribute) {
             case ADMIN:
                 return "admin";
-            case CHECKIN:
-                return "checkin";
+            case CHECK_IN:
+                return "check_in";
         }
         throw new AttributeConvertException("Unknown team member role type \"" + attribute + "\"");
     }
@@ -24,8 +24,8 @@ public class MemberRoleConverter implements AttributeConverter<MemberRole, Strin
         switch (dbData) {
             case "admin":
                 return MemberRole.ADMIN;
-            case "checkin":
-                return MemberRole.CHECKIN;
+            case "check_in":
+                return MemberRole.CHECK_IN;
         }
         throw new AttributeConvertException("Unknown user role type \"" + dbData + "\"");
     }
